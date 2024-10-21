@@ -1,0 +1,84 @@
+<mat-card>
+  <h2>สมัครสมาชิก</h2>
+  <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+    <!-- อีเมล -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        required
+        [(ngModel)]="email"
+        name="email"
+        #emailInput="ngModel"
+        autocomplete="username"
+      />
+      <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+        กรุณาใส่อีเมลที่ถูกต้อง
+      </mat-error>
+    </mat-form-field>
+
+    <!-- รหัสผ่าน -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        required
+        [(ngModel)]="password"
+        name="password"
+        #passwordInput="ngModel"
+        autocomplete="new-password"
+      />
+      <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+        กรุณาใส่รหัสผ่าน (อย่างน้อย 6 ตัวอักษร)
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ยืนยันรหัสผ่าน -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        type="password"
+        required
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        #confirmPasswordInput="ngModel"
+        autocomplete="new-password"
+      />
+
+      <mat-error
+        *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched"
+      >
+        <ng-container *ngIf="confirmPasswordInput.errors?.['required']">
+          กรุณายืนยันรหัสผ่าน
+        </ng-container>
+        <ng-container
+          *ngIf="!confirmPasswordInput.errors?.['required'] && password !== confirmPassword"
+        >
+          รหัสผ่านไม่ตรงกัน
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- ปุ่มสมัครสมาชิก -->
+    <div class="register-login">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="btn-register"
+        [disabled]="registerForm.invalid"
+      >
+        สมัครสมาชิก
+      </button>
+      <button class="btn-login" routerLink="/login">เข้าสู่ระบบ</button>
+    </div>
+
+    <!-- แสดงข้อความข้อผิดพลาด -->
+    <div *ngIf="errorMessage" class="error">
+      <mat-error>{{ errorMessage }}</mat-error>
+    </div>
+  </form>
+</mat-card>

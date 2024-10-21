@@ -1,0 +1,65 @@
+h2,
+mat-label,
+mat-error,
+button,
+input,
+.error {
+  font-family: "kanit", sans-serif;
+}
+
+h2 {
+  text-align: center;
+}
+
+mat-card {
+  border-radius: 20px;
+  box-shadow: 0px 0px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: animateIn 1000ms ease 200ms forwards;
+}
+
+.error {
+  margin-top: 10px;
+}
+
+.submit-forgot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.btn-login {
+  background-color: #4a005e;
+  color: white;
+  width: 120px;
+  border-radius: 20px;
+}
+.btn-login:hover {
+  background-color: #8a00b0;
+}
+.btn-login:disabled {
+  background-color: #666666;
+}
+
+.btn-forgot {
+  background-color: white;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 0;
+  font-weight: 500;
+}
+.btn-forgot:hover {
+  color: #666;
+}
+
+@keyframes animateIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,55 @@
+<mat-card>
+  <h2>เข้าสู่ระบบ</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <mat-form-field color="primary" appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        required
+        [(ngModel)]="email"
+        name="email"
+        #emailInput="ngModel"
+        autocomplete="username"
+      />
+      <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+        กรุณาใส่อีเมล
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label class="mat-label">Password</mat-label>
+      <input
+        matInput
+        type="password"
+        required
+        [(ngModel)]="password"
+        name="password"
+        #passwordInput="ngModel"
+        autocomplete="current-password"
+      />
+      <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+        กรุณาใส่รหัสผ่าน
+      </mat-error>
+    </mat-form-field>
+
+    <div class="submit-forgot">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="btn-login"
+        [disabled]="loginForm.invalid"
+      >
+        เข้าสู่ระบบ
+      </button>
+      <button class="btn-forgot" (click)="goToForgotPassword()">
+        ลืมรหัสผ่าน?
+      </button>
+    </div>
+
+    <div *ngIf="errorMessage" class="error">
+      <mat-error>{{ errorMessage }}</mat-error>
+    </div>
+  </form>
+</mat-card>
